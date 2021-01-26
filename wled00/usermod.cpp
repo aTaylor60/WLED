@@ -1,4 +1,10 @@
 #include "wled.h"
+
+#define BUTTON_A_PIN        D6
+#define BUTTON_B_PIN        D7
+#define LED_A_PIN           D1
+#define LED_B_PIN           D2
+
 /*
  * This v1 usermod file allows you to add own functionality to WLED more easily
  * See: https://github.com/Aircoookie/WLED/wiki/Add-own-functionality
@@ -13,7 +19,10 @@
 //gets called once at boot. Do all initialization that doesn't depend on network here
 void userSetup()
 {
-  
+    pinMode(LED_A_PIN, OUTPUT);
+    digitalWrite(LED_A_PIN, HIGH);
+    pinMode(LED_B_PIN, OUTPUT);
+    digitalWrite(LED_B_PIN, HIGH);
 }
 
 //gets called every time WiFi is (re-)connected. Initialize own network interfaces here
@@ -25,5 +34,11 @@ void userConnected()
 //loop. You can use "if (WLED_CONNECTED)" to check for successful connection
 void userLoop()
 {
-  
+    RgbwColor c;
+    uint32_t col = strip.getPixelColor(0);
+    c.R = col >> 16; c.G = col >> 8; c.B = col; c.W = col >> 24;
+    analogWrite(LED_A_PIN, c.R);
+    col = strip.getPixelColor(1);
+    c.R = col >> 16; c.G = col >> 8; c.B = col; c.W = col >> 24;
+    analogWrite(LED_B_PIN, c.R);
 }
