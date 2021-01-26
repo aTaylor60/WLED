@@ -18,7 +18,7 @@
 //#define WLED_USE_SHOJO_PCB
 
 #ifndef BTNPIN
-#define BTNPIN  0  //button pin. Needs to have pullup (gpio0 recommended)
+#define BTNPIN  12  //button pin. Needs to have pullup (gpio0 recommended)
 #endif
 
 #ifndef TOUCHPIN
@@ -30,7 +30,7 @@
 #endif
 
 #ifndef RLYPIN
-#define RLYPIN 12  //pin for relay, will be set HIGH if LEDs are on (-1 to disable). Also usable for standby leds, triggers,...
+#define RLYPIN 0  //pin for relay, will be set HIGH if LEDs are on (-1 to disable). Also usable for standby leds, triggers,...
 #endif
 
 #ifndef AUXPIN
