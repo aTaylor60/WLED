@@ -19,10 +19,7 @@
 //gets called once at boot. Do all initialization that doesn't depend on network here
 void userSetup()
 {
-    pinMode(LED_A_PIN, OUTPUT);
-    digitalWrite(LED_A_PIN, HIGH);
-    pinMode(LED_B_PIN, OUTPUT);
-    digitalWrite(LED_B_PIN, HIGH);
+
 }
 
 //gets called every time WiFi is (re-)connected. Initialize own network interfaces here
@@ -35,10 +32,10 @@ void userConnected()
 void userLoop()
 {
     RgbwColor c;
-    uint32_t col = strip.getPixelColor(0);
+    uint32_t col = strip.getPixelColor(ledCount - 1);
     c.R = col >> 16; c.G = col >> 8; c.B = col; c.W = col >> 24;
     analogWrite(LED_A_PIN, c.R);
-    col = strip.getPixelColor(1);
+    col = strip.getPixelColor(ledCount - 2);
     c.R = col >> 16; c.G = col >> 8; c.B = col; c.W = col >> 24;
     analogWrite(LED_B_PIN, c.R);
 }
